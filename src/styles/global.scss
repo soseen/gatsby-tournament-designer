@@ -1,0 +1,21 @@
+@import './Variables.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    background: $main;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 300px;
+    height: 300px;
+}
