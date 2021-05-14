@@ -1,24 +1,13 @@
 import React from 'react'
 import Navbar from './Navbar'
+import '../styles/Layout.scss';
 
 type Props = {
     children: React.ReactNode
 }
 
 const Layout: React.FC<Props> = ({children}) => {
-    // const data = useStaticQuery(
-    //     graphql`
-    //         query Logo {
-    //             file(relativePath: {eq: "deer.png"}) {
-    //                 childImageSharp {
-    //                     fluid {
-    //                     ...GatsbyImageSharpFluid
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     `
-    // )
+
     return (
         <div className='layout'>
             <Navbar />

@@ -1,0 +1,36 @@
+@import './Variables.scss';
+@import './Mixins.scss';
+
+.tournament-icons-wrapper{
+    width: 100%;
+    flex-wrap: wrap;
+    // background-color: $secondary;
+    border-radius: 2px;
+    margin-bottom: 10px;
+
+    .tournament-icon {
+        @include basic-btn;
+        border-radius: 2px;
+        background-color: $main;
+        width: 60px;
+        padding: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+
+    .tournament-icon-selected {
+        border: 2px solid $accent-4;
+    }
+}
+
+@media (max-width: 700px) {
+    .tournament-icons-wrapper {
+        .tournament-icon {
+            width: 45px;
+        }
+    }
+}

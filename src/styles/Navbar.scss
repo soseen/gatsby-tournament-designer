@@ -5,17 +5,18 @@ header {
     width: 100%;
     height: 50px;
     position: fixed;
+    z-index: 100;
 }
 
 .navbar-wrapper {
-    width: 100%;
+    width: 100%;    
     height: 100%;
     background-color: $secondary;
-    border-bottom: 1px solid #36384a;
+    border-bottom: 1px solid $accent-1;
     margin-bottom: 20px;
     position: relative;
     height: 100%;
-    z-index: 100;
+    z-index: 50;
 
     .navbar {
         width: 100%;
@@ -59,7 +60,7 @@ header {
             color: $text;
 
             &:hover {
-                background-color: #242633;
+                background-color: $accent-2;
                 color: #fff
             }
         }
@@ -69,7 +70,7 @@ header {
             display: flex;
             justify-content: center;
             align-items: center;
-            border-right: 1px solid #36384a;
+            border-right: 1px solid $accent-1;
         }
 
         .route-active {
@@ -82,7 +83,7 @@ header {
                 left: 0;
                 width: 100%;
                 height: 3px;
-                background-color: #FA0159;
+                background-color: $accent-3;
             }
         }
 
@@ -109,7 +110,7 @@ header {
     left: 0;
     width: 100%;
     background-color: $secondary;
-    border-bottom: 1px solid #36384a;
+    border-bottom: 1px solid $accent-1;
     z-index: 50;
     transition: all 1s;
 
@@ -121,7 +122,7 @@ header {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-right: 1px solid #36384a;
+        border-right: 1px solid $accent-1;
     }
 
     .links {
@@ -151,18 +152,19 @@ header {
         color: $text;
 
         &:hover {
-            background-color: #242633;
+            background-color: $accent-2;
             color: #fff
         }
     }
 
-    li a {
+    li p {
         width: 100%;
         text-decoration: none;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        margin: 0;
     }
 }
 

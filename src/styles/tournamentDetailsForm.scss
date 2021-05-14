@@ -1,0 +1,198 @@
+@import './Variables.scss';
+@import './Mixins.scss';
+
+
+.tournament-details-form-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+    label {
+        @include label
+    }
+
+    .tournament-details-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tournament-details-form-checkboxes-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+
+        .input-checkbox {
+            @include basic-btn;
+            border-radius: 2px;
+            width: 25px;
+            height: 25px;
+            background-color: $main;
+            color: transparent;
+            font-size: 2.1rem;
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+        }
+
+        .input-checkbox-selected {
+            color: $accent-3;
+            border: 2px solid $accent-4;
+        }
+
+        .checkbox-label {
+            margin: 0;
+            font-size: 0.9rem;
+            color: $text;
+        }
+    }
+
+    .tournament-details-form-checkbox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+        margin-right: 10px;
+    }
+
+
+
+    .tournament-details-form-points-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .tournament-details-form-input {
+        width: 49%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        input {
+            @include input;
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+        }
+
+        input[type=number]:disabled {
+            color: #414141;
+        }
+    }
+
+    .tournament-details-match-format-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .tournament-details-match-format-wrapper-hidden {
+        display: none;
+    }
+
+    .tournament-details-match-format-buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center
+    }
+
+    .tournament-details-match-format-button {
+        @include basic-btn;
+        background-color: $secondary;
+        padding: 10px;
+        color: $text;
+        font-weight: bolder;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 14%), 0 1px 3px rgb(0 0 0 / 12%);
+        border-radius: 2px;
+        font-size: 0.8rem;
+        width: 19%;
+
+        &:hover {
+            background-color: $accent-3;
+        }
+    }
+
+    .tournament-details-match-format-button-active {
+        background-color: $accent-3;
+    }
+
+    .tournament-details-tiebreak-rules-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .tiebreak-rule-box {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 2px;
+        padding: 5px;
+        background-color: $secondary;
+        margin-bottom: 10px;
+        color: $text;
+        font-size: 0.9rem;
+        min-height: 52px;
+        box-shadow: 0 1px 2px rgb(0 0 0 / 14%), 0 1px 3px rgb(0 0 0 / 12%);
+
+        p {
+            margin: 0;
+            margin-right: 5px;
+        }
+
+        .tiebreak-rule-name {
+            margin-right: auto;
+        }
+
+        .tiebreak-rule-arrows {
+            display: flex;
+            flex-direction: column
+        }
+
+        button {
+            @include basic-btn;
+            color: $accent-4;
+            font-size: 1.3rem;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                color: $accent-3;
+            }
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .tournament-details-form-wrapper{
+        .tournament-details-form-checkboxes-wrapper {
+            flex-direction: column;
+            .input-checkbox {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}

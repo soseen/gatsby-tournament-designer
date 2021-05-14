@@ -2,13 +2,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+html {
+    font-size: 16px;
+}
+
 body {
     color: #fff;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
     font-weight: 400;
     margin: 0;
     background: $main;
+    padding: 1px 0 0 0;
+    margin: -1px auto 0 auto;
 }
 
 body * {
@@ -18,4 +23,17 @@ body * {
 .wrapper {
     width: 300px;
     height: 300px;
+}
+
+@media (max-width: 1000px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    html {
+        font-size: 13px;
+    }
 }
