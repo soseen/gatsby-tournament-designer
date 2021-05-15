@@ -9,5 +9,5 @@ export type TournamentDetails =
         allowDraws?: boolean,
         includeScore?: boolean,
         double?: boolean,
-        tournamentIconId?: boolean
+        iconId?: number
     }
