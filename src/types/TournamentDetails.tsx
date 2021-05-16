@@ -1,7 +1,12 @@
+import { TournamentIcon } from './TournamentIcon'
+import { TiebreakRule } from './TiebreakRule'
+import { Contestant } from './Contestant'
+
 export type TournamentDetails = 
     {
         name: string,
-        participants: string[],
+        format?: string,
+        participants: Contestant[],
         pointsPerWin?: number,
         pointsPerDraw?: number,
         bestOf?: number,
@@ -9,5 +14,6 @@ export type TournamentDetails =
         allowDraws?: boolean,
         includeScore?: boolean,
         double?: boolean,
-        iconId?: number
+        icon?: TournamentIcon,
+        tiebreakRules?: TiebreakRule[]
     }

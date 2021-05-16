@@ -8,9 +8,17 @@ import '../../styles/newRoundRobin.scss'
 import { Contestant } from '../../types/Contestant';
 import { TournamentIcon } from '../../types/TournamentIcon'
 import { TournamentDetails } from '../../types/TournamentDetails'
-
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { actionCreators, State } from '@/state/state';
 
 const newRoundRobin: React.FC = () => {
+
+    const dispatch = useDispatch();
+
+    const { updateName } = bindActionCreators(actionCreators, dispatch)
+
+    const state = useSelector((state: State) => state.tournamentDetails)
     
     const tournamentDetailsInit = {
         name: '',
@@ -42,14 +50,14 @@ const newRoundRobin: React.FC = () => {
                     </div>
                     <div className='new-rr-tournament-name'>
                         <label htmlFor='tournament-name-input'>Tournament Name</label>
-                        <input type='text' name='tournament-name-input' className='tournament-name-input' autoComplete='off' placeholder='name...' value={tournamentDetails.name} onChange={(event: ChangeEvent<HTMLInputElement>) => setTournamentDetails({...tournamentDetails, name: event.target.value})}></input>
+                        <input type='text' name='tournament-name-input' className='tournament-name-input' autoComplete='off' placeholder='name...' value={state.name} onChange={(event: ChangeEvent<HTMLInputElement>) => updateName(event.target.value)}></input>
                     </div>
                     <TournamentIcons selectedIcon={selectedIcon} setSelectedIcon={setSelectedIcon} />
                     <div className='new-rr-panel'>
                         <div className='new-rr-participants-wrapper'>
                             <h4>Add Participants</h4>
                             <div className='new-rr-participants'>
-                                {contestants.map(({ name }, index) => (
+                                {state.participants.map(({ name }, index) => (
                                     <ContestantInput key={index} index={index} name={name} contestants={contestants} setContestants={setContestants} />
                                 ))
                                 }
@@ -57,7 +65,7 @@ const newRoundRobin: React.FC = () => {
                         </div>
                         <div className='new-rr-edit-info-wrapper'>
                             <h4>Specify Rules</h4>
-                            <TournamentDetailsForm tournamentDetails={tournamentDetails} setTournamentDetails={setTournamentDetails}/>
+                            <TournamentDetailsForm />
                         </div>
                     </div>
                     <button className='submit-tournament-button'>Submit</button>

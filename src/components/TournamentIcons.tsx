@@ -47,8 +47,7 @@ const TournamentIcons: React.FC<Props> = ({selectedIcon, setSelectedIcon}) => {
             {
                 img: node.childImageSharp.gatsbyImageData, 
                 id: index,
-                name: node.base,
-                selected: false
+                name: node.base
             }
         )
     );
@@ -56,10 +55,9 @@ const TournamentIcons: React.FC<Props> = ({selectedIcon, setSelectedIcon}) => {
         return (
             <div className='tournament-icons-wrapper'>
                 <h4>Choose Tournament Icon</h4>
-                <h2>{state.iconId}</h2>
-                {tournamentIconsData.map(({id, img, name}) => (
-                    <button key={id} className={selectedIcon?.id === id ? 'tournament-icon tournament-icon-selected' : 'tournament-icon'} onClick={() => updateIcon(id)}>
-                        <GatsbyImage image={img} alt={name}></GatsbyImage>
+                {tournamentIconsData.map((icon) => (
+                    <button key={icon.id} className={state.icon?.id === icon.id ? 'tournament-icon tournament-icon-selected' : 'tournament-icon'} onClick={() => updateIcon(icon)}>
+                        <GatsbyImage image={icon.img} alt={icon.name}></GatsbyImage>
                     </button>
                 ))}
             </div>

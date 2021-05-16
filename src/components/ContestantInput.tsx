@@ -1,4 +1,7 @@
+import { actionCreators, State } from '@/state/state';
 import React, { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import 'styles/contestantInput.scss'
 import { Contestant } from '../types/Contestant'
 
@@ -12,11 +15,17 @@ type Props = {
 
 const ContestantInput: React.FC<Props> = ({index, name, setContestants, contestants}) => {
 
+    const dispatch = useDispatch();
+
+    const { updateParticipants } = bindActionCreators(actionCreators, dispatch);
+    const state = useSelector((state: State) => state.tournamentDetails)
+
+
     const handleChange = ({
         target: { value, name },
     }: ChangeEvent<HTMLInputElement>): void => {
         
-        const newContestants = contestants.slice(0);
+        const newContestants = state.participants.slice(0);
 
         newContestants[index] = { name: value };
         if (index + 1 === newContestants.length) {
@@ -29,7 +38,7 @@ const ContestantInput: React.FC<Props> = ({index, name, setContestants, contesta
         ) {
             newContestants.pop();
         }
-        setContestants(newContestants);
+        updateParticipants(newContestants);
     };
         return (
             <div key={index} className='contestant-input-wrapper'>

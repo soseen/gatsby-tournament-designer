@@ -4,8 +4,12 @@ import '../../styles/newTournament.scss'
 import { StaticImage } from "gatsby-plugin-image"
 import { BiPlus, BiMinus } from "react-icons/bi";
 import { Link } from 'gatsby';
+import { useDispatch } from 'react-redux';
+import { selectFormat } from '@/state/actions/actionCreators';
 
 const newCompetition: React.FC = () => {
+
+    const dispatch = useDispatch()
         
     return (
         <Layout>
@@ -43,7 +47,7 @@ const newCompetition: React.FC = () => {
                                         <p><span className='dis'><BiMinus /></span> requires a lot of games to be played</p>
                                 </div>
                             </div>
-                            <Link activeClassName='route-active' to='/newCompetition/newRoundRobin'><button className='select-format-btn'>Select</button></Link>
+                            <Link activeClassName='route-active' to='/newCompetition/newRoundRobin'><button title='select Round-Robin' className='select-format-btn' onClick={() => dispatch(selectFormat('round-robin'))}>Select</button></Link>
                         </div>
                     </div>
                     <div className='new-tournament-format-card-wrapper'>
@@ -75,7 +79,7 @@ const newCompetition: React.FC = () => {
                                 </div>
 
                             </div>
-                            <button className='select-format-btn'>Select</button>
+                            <button title='select Single Elimination' className='select-format-btn' onClick={() => dispatch(selectFormat('single-elimination'))}>Select</button>
                         </div>
 
                     </div>
@@ -107,7 +111,7 @@ const newCompetition: React.FC = () => {
                                 </div>
 
                             </div>
-                            <button className='select-format-btn'>Select</button>
+                            <button title='select Double Elimination' className='select-format-btn' onClick={() => dispatch(selectFormat('double-elimination'))}>Select</button>
                         </div>
 
                     </div>
@@ -139,7 +143,7 @@ const newCompetition: React.FC = () => {
                                 </div>
 
                             </div>
-                            <button className='select-format-btn'>Select</button>
+                            <button title='select Swiss' className='select-format-btn' onClick={() => dispatch(selectFormat('swiss'))}>Select</button>
                         </div>
 
                     </div>

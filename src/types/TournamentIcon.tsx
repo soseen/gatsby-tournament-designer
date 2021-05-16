@@ -5,5 +5,4 @@ export type TournamentIcon =
     id: number,
     name: string,
     img: IGatsbyImageData,
-    selected: boolean
 };
