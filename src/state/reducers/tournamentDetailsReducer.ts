@@ -1,28 +1,14 @@
 import { TournamentDetails } from '../../types/TournamentDetails'
+import { tournamentDetailsInit } from '../../data/tournamentDetailsInit';
 import { Action } from '../actions/actionTypes';
 import { Actions} from '../actions/actions';
-import { tiebreakRulesDefault } from '../../data/tiebreakRulesDefault'
 
-const tournamentDetailsInit: TournamentDetails = {
-    name: '',
-    format: null,
-    participants: [
-        { name: '' },
-        { name: '' }
-    ],
-    pointsPerWin: 3,
-    pointsPerDraw: 1,
-    bestOf: null,
-    finalsBestOf: null,
-    allowDraws: true,
-    includeScore: true,
-    double: false,
-    icon: null,
-    tiebreakRules: tiebreakRulesDefault
-}
+
 
 const reducer = (state: TournamentDetails = tournamentDetailsInit, action: Action) => {
     switch (action.type) {
+        case Actions.SET_TOURNAMENT:
+            return state = action.payload
         case Actions.SELECT_FORMAT:
             return {...state, format: action.payload}
         case Actions.UPDATE_NAME:

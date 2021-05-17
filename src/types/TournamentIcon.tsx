@@ -2,7 +2,7 @@ import { IGatsbyImageData } from '../../node_modules/gatsby-plugin-image/dist/sr
 
 export type TournamentIcon = 
 { 
-    id: number,
-    name: string,
-    img: IGatsbyImageData,
+    id?: number,
+    name?: string,
+    img?: IGatsbyImageData,
 };

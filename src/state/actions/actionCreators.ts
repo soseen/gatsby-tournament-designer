@@ -4,6 +4,16 @@ import { Action } from "./actionTypes"
 import { TournamentIcon } from '../../types/TournamentIcon'
 import { Contestant } from "@/types/Contestant"
 import { TiebreakRule } from "@/types/TiebreakRule"
+import { TournamentDetails } from "@/types/TournamentDetails"
+
+
+//TOURNAMENT_DETAILS
+export const setTournament = (tournamentDetails: TournamentDetails) => {
+    return {
+        type: Actions.SET_TOURNAMENT,
+        payload: tournamentDetails
+    }
+}
 
 export const selectFormat = (format: string) => {
     return {
@@ -19,11 +29,11 @@ export const updateName = (name: string) => {
     }
 }
 
-export const updateIcon = (icon: TournamentIcon) => {
+export const updateIcon = (iconId: number) => {
     return (dispatch: Dispatch<Action>) => {
         dispatch({
             type: Actions.UPDATE_ICON,
-            payload: icon
+            payload: iconId
         })
     }
 }
@@ -87,5 +97,13 @@ export const updateTiebreakRules = (tiebreakRules: TiebreakRule[]) => {
 export const resetTiebreakRules = () => {
     return {
         type: Actions.RESET_TIEBREAK_RULES,
+    }
+}
+
+//TOURNAMENT_ICONS
+export const addTournamentIcons = (tournamentIcons: TournamentIcon[]) => {
+    return {
+        type: Actions.ADD_T_ICONS,
+        payload: tournamentIcons
     }
 }

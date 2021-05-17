@@ -1,4 +1,5 @@
 export enum Actions {
+    SET_TOURNAMENT = "setTournament",
     SELECT_FORMAT = "selectTournamentFormat",
     UPDATE_ICON = "updateTournamentIcon",
     UPDATE_NAME = "updateTournamentName",
@@ -10,5 +11,6 @@ export enum Actions {
     UPDATE_BEST_OF = "updateTournamentBestOf",
     UPDATE_PARTICIPANTS = "updateTournamentParticipants",
     UPDATE_TIEBREAK_RULES = "updateTournamentTiebreakRules",
-    RESET_TIEBREAK_RULES = "resetTournamentTiebreakRules"
+    RESET_TIEBREAK_RULES = "resetTournamentTiebreakRules",
+    ADD_T_ICONS = "addTournamentIcons"
 }

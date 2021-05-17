@@ -2,6 +2,14 @@ import { Actions } from "./actions";
 import { TournamentIcon } from '../../types/TournamentIcon'
 import { Contestant } from '../../types/Contestant'
 import { TiebreakRule } from '../../types/TiebreakRule'
+import { IGatsbyImageData } from "gatsby-plugin-image";
+import { TournamentDetails } from "@/types/TournamentDetails";
+
+//TOURNAMENT_DETAILS
+type setTournament = {
+    type: Actions.SET_TOURNAMENT,
+    payload: TournamentDetails
+}
 
 type selectTournamentFormat = {
     type: Actions.SELECT_FORMAT,
@@ -15,7 +23,7 @@ type UpdateTournamentName = {
 
 type UpdateTournamentIcon = {
     type: Actions.UPDATE_ICON,
-    payload: TournamentIcon
+    payload: number
 }
 
 type UpdateTournamentPointsWin = {
@@ -62,8 +70,15 @@ type resetTournamentTiebreakRules = {
     type: Actions.RESET_TIEBREAK_RULES,
 }
 
+//TOURNAMENT_ICONS
+type addTournamentIcons = {
+    type: Actions.ADD_T_ICONS,
+    payload: TournamentIcon[]
+}
 
-export type Action =  
+
+export type Action = 
+    setTournament |
     selectTournamentFormat |
     UpdateTournamentName | 
     UpdateTournamentIcon | 
@@ -75,4 +90,5 @@ export type Action =
     updateTournamentBestOf |
     updateTournamentParticipants |
     updateTournamentTiebreakRules |
-    resetTournamentTiebreakRules;
+    resetTournamentTiebreakRules |
+    addTournamentIcons;
