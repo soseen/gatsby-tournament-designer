@@ -13,27 +13,27 @@ export const tiebreakRulesDefault: TiebreakRule[] = [
     },
     {
         name: 'Buchholz System',
-        priority: 2,
+        priority: 3,
         desc: 'added score of all the opponents a player faced'
     },
     {
         name: 'Most wins',
-        priority: 3,
+        priority: 4,
         desc: 'highest number of wins determines a champion'
     },
     {
         name: 'Score differential',
-        priority: 4,
+        priority: 5,
         desc: 'all points scored by a player subtracted by points against'
     },
     {
         name: 'Tiebreak game',
-        priority: 5,
+        priority: 6,
         desc: 'additional game to determine a winner'
     },
     {
         name: 'Coin toss',
-        priority: 6,
+        priority: 7,
         desc: 'good old way to settle the score'
     }
 ]

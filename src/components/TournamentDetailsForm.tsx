@@ -8,9 +8,13 @@ import { bindActionCreators } from 'redux';
 import { actionCreators, State } from '@/state/state';
 import { tiebreakRulesDefault } from '../data/tiebreakRulesDefault';
 
+type Props = {
+    roundsCount?: number,
+    setRoundsCount?: (roundsCount: number) => void
+}
 
 
-const TournamentDetailsForm: React.FC = () => {
+const TournamentDetailsForm: React.FC<Props> = ({roundsCount, setRoundsCount}) => {
 
     const dispatch = useDispatch();
     const { updatePointsWin, updatePointsDraw, updateAllowDraws, updateDoubleRounds, updateIncludePoints, updateBestOf, updateTiebreakRules } = bindActionCreators(actionCreators, dispatch)
@@ -20,6 +24,14 @@ const TournamentDetailsForm: React.FC = () => {
     useEffect(() => {
 
         let tiebreakOptions = tiebreakRulesDefault.slice(0);
+
+        if(state.format !== 'swiss') {
+            tiebreakOptions = tiebreakOptions.filter(to => to.name !== 'Buchholz System')
+        }
+
+        if(state.format !== 'round-robin') {
+            tiebreakOptions = tiebreakOptions.filter(to => to.name !== 'Sonneborn-Berger')
+        }
 
         if(!state.includeScore) {
             tiebreakOptions = tiebreakOptions.filter(to => to.name !== 'Score differential' && to.name !== 'Most wins');
@@ -66,7 +78,6 @@ const TournamentDetailsForm: React.FC = () => {
         updateTiebreakRules(tiebreakOptions);
     }
 
-
         return (
             <div className='tournament-details-form-wrapper'>
                 <div className='tournament-details-form'>
@@ -94,6 +105,12 @@ const TournamentDetailsForm: React.FC = () => {
                             <input type='number' name='input-draw-points' autoComplete='off' disabled={state.allowDraws ? false : true} onChange={(event: ChangeEvent<HTMLInputElement>) => updatePointsDraw(parseInt(event.target.value))} value={state.allowDraws ? state.pointsPerDraw : ''}></input>
                         </div>
                     </div>
+                    {state.format === 'swiss' &&
+                        <div className='tournament-details-form-rounds-wrapper'>
+                            <label htmlFor='input-win-points'>Number of rounds</label>
+                            <input type='number' name='input-win-points' autoComplete='off' onChange={(event: ChangeEvent<HTMLInputElement>) => setRoundsCount(parseInt(event.target.value))} value={roundsCount ? roundsCount : ''}></input>
+                        </div>
+                    }
                     <div className={state.includeScore ? 'tournament-details-match-format-wrapper' : 'tournament-details-match-format-wrapper tournament-details-match-format-wrapper-hidden'}>
                         <label>Match format</label>
                         <div className='tournament-details-match-format-buttons'>
@@ -126,6 +143,7 @@ const TournamentDetailsForm: React.FC = () => {
                 </div>
             </div>
         );
+
     }
 
 export default TournamentDetailsForm;

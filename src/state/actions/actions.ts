@@ -1,4 +1,5 @@
 export enum Actions {
+    SET_IS_FETCHING = "setIsFetchingData",
     SET_TOURNAMENT = "setTournament",
     SELECT_FORMAT = "selectTournamentFormat",
     UPDATE_ICON = "updateTournamentIcon",
@@ -12,5 +13,6 @@ export enum Actions {
     UPDATE_PARTICIPANTS = "updateTournamentParticipants",
     UPDATE_TIEBREAK_RULES = "updateTournamentTiebreakRules",
     RESET_TIEBREAK_RULES = "resetTournamentTiebreakRules",
-    ADD_T_ICONS = "addTournamentIcons"
+    ADD_T_ICONS = "addTournamentIcons",
+    LOAD_TOURNAMENTS = "loadTournaments"
 }

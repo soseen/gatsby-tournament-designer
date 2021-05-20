@@ -152,7 +152,7 @@ const newCompetition: React.FC = () => {
                                 </div>
 
                             </div>
-                            <button title='select Swiss' className='select-format-btn' onClick={() => setNewTournament('swiss')}>Select</button>
+                            <Link activeClassName='route-active' to='/newCompetition/newSwiss'><button title='select Swiss' className='select-format-btn' onClick={() => setNewTournament('swiss')}>Select</button></Link>
                         </div>
 
                     </div>

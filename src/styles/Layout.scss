@@ -5,4 +5,12 @@
     padding: 1px 0 0 0;
     margin: -1px auto 0 auto;
     overflow: hidden;
+
+    .fetching-spinner {
+        position: absolute;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 200;
+    }
 }

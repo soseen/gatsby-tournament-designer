@@ -71,6 +71,25 @@
         margin-bottom: 10px;
     }
 
+    .tournament-details-form-rounds-wrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        input {
+            @include input
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+        }
+    }
+
     .tournament-details-form-input {
         width: 49%;
         display: flex;

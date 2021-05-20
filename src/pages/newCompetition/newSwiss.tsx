@@ -1,6 +1,6 @@
 import ContestantInput from '@/components/ContestantInput';
 import { Link } from 'gatsby';
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import TournamentIcons from '../../components/TournamentIcons';
 import TournamentDetailsForm from '../../components/TournamentDetailsForm'
@@ -12,18 +12,25 @@ import { actionCreators, State } from '@/state/state';
 import { axios } from '../../axios/axios';
 
 
-const newRoundRobin: React.FC = () => {
+const newSwiss: React.FC = () => {
 
     const dispatch = useDispatch();
-    const { updateName, setIsFetchingData } = bindActionCreators(actionCreators, dispatch)
+    const { updateName, setIsFetchingData, selectFormat } = bindActionCreators(actionCreators, dispatch)
     const state = useSelector((state: State) => state.tournamentDetails)
 
     const [validationMessage, setValidationMessage] = useState<string | null>(null);
+    const [roundsCount, setRoundsCount] = useState<number>(null);
     
     const [contestants, setContestants] = useState<Contestant[]>([
         { name: '' },
         { name: '' },
     ]);
+
+    useEffect(() => {
+        if(!state.format){
+            selectFormat('swiss')
+        }
+    }, [])
 
     const validateForm = (): boolean => {
  
@@ -80,8 +87,7 @@ const newRoundRobin: React.FC = () => {
                     promises.push(axios.post('/contestants', tournamentContestant).catch(err => console.log(err)))
                 });
 
-
-                for(let i = 1; i<tournamentContestants.length; i++) {
+                for(let i = 1; i<roundsCount; i++) {
                     promises.push(axios.post('/rounds', {no: i, tournamentId}).catch(err => console.log(err)))
                 }
 
@@ -118,7 +124,7 @@ const newRoundRobin: React.FC = () => {
             <div className='new-rr-wrapper'>
                 <div className='new-rr-main'>
                     <div className='new-rr-header'>
-                        <h1>Round-Robin Format</h1>
+                        <h1>Swiss Format</h1>
                         <Link to='/newCompetition'><button>Back</button></Link>
                     </div>
                     {validationMessage && 
@@ -143,7 +149,7 @@ const newRoundRobin: React.FC = () => {
                         </div>
                         <div className='new-rr-edit-info-wrapper'>
                             <h4>Specify Rules</h4>
-                            <TournamentDetailsForm />
+                            <TournamentDetailsForm roundsCount={roundsCount} setRoundsCount={setRoundsCount} />
                         </div>
                     </div>
                     <button className='submit-tournament-button' onClick={submitTournament}>Submit</button>
@@ -153,4 +159,4 @@ const newRoundRobin: React.FC = () => {
     );
 }
 
-export default newRoundRobin;
+export default newSwiss;

@@ -5,13 +5,19 @@ import { TiebreakRule } from '../../types/TiebreakRule'
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { TournamentDetails } from "@/types/TournamentDetails";
 
+//FETCHING_FLAG
+type SetIsFetchingData = {
+    type: Actions.SET_IS_FETCHING,
+    payload: boolean
+}
+
 //TOURNAMENT_DETAILS
-type setTournament = {
+type SetTournament = {
     type: Actions.SET_TOURNAMENT,
     payload: TournamentDetails
 }
 
-type selectTournamentFormat = {
+type SelectTournamentFormat = {
     type: Actions.SELECT_FORMAT,
     payload: string
 }
@@ -41,7 +47,7 @@ type UpdateTournamentAllowDraws = {
     payload: boolean
 }
 
-type updateTournamentDoubleRounds = {
+type UpdateTournamentDoubleRounds = {
     type: Actions.UPDATE_DOUBLE,
     payload: boolean
 }
@@ -51,44 +57,51 @@ type UpdateTournamentIncludeScore = {
     payload: boolean
 }
 
-type updateTournamentBestOf = {
+type UpdateTournamentBestOf = {
     type: Actions.UPDATE_BEST_OF,
     payload: number
 }
 
-type updateTournamentParticipants = {
+type UpdateTournamentParticipants = {
     type: Actions.UPDATE_PARTICIPANTS,
     payload: Contestant[]
 }
 
-type updateTournamentTiebreakRules = {
+type UpdateTournamentTiebreakRules = {
     type: Actions.UPDATE_TIEBREAK_RULES,
     payload: TiebreakRule[]
 }
 
-type resetTournamentTiebreakRules = {
+type ResetTournamentTiebreakRules = {
     type: Actions.RESET_TIEBREAK_RULES,
 }
 
 //TOURNAMENT_ICONS
-type addTournamentIcons = {
+type AddTournamentIcons = {
     type: Actions.ADD_T_ICONS,
     payload: TournamentIcon[]
 }
 
+//TOURNAMENTS
+type LoadTournaments = {
+    type: Actions.LOAD_TOURNAMENTS,
+    payload: TournamentDetails[]
+}
 
 export type Action = 
-    setTournament |
-    selectTournamentFormat |
+    SetIsFetchingData |
+    SetTournament |
+    SelectTournamentFormat |
     UpdateTournamentName | 
     UpdateTournamentIcon | 
     UpdateTournamentPointsWin | 
     UpdateTournamentPointsDraw | 
     UpdateTournamentAllowDraws |
-    updateTournamentDoubleRounds | 
+    UpdateTournamentDoubleRounds | 
     UpdateTournamentIncludeScore |
-    updateTournamentBestOf |
-    updateTournamentParticipants |
-    updateTournamentTiebreakRules |
-    resetTournamentTiebreakRules |
-    addTournamentIcons;
+    UpdateTournamentBestOf |
+    UpdateTournamentParticipants |
+    UpdateTournamentTiebreakRules |
+    ResetTournamentTiebreakRules |
+    AddTournamentIcons |
+    LoadTournaments;

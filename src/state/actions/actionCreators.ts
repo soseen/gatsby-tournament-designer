@@ -6,6 +6,13 @@ import { Contestant } from "@/types/Contestant"
 import { TiebreakRule } from "@/types/TiebreakRule"
 import { TournamentDetails } from "@/types/TournamentDetails"
 
+//FETCHING_FLAG
+export const setIsFetchingData = (isFetching: boolean) => {
+    return {
+        type: Actions.SET_IS_FETCHING,
+        payload: isFetching
+    }
+}
 
 //TOURNAMENT_DETAILS
 export const setTournament = (tournamentDetails: TournamentDetails) => {
@@ -105,5 +112,13 @@ export const addTournamentIcons = (tournamentIcons: TournamentIcon[]) => {
     return {
         type: Actions.ADD_T_ICONS,
         payload: tournamentIcons
+    }
+}
+
+//TOURNAMENTS
+export const loadTournaments = (tournamentsData: TournamentDetails[]) => {
+    return {
+        type: Actions.LOAD_TOURNAMENTS,
+        payload: tournamentsData
     }
 }

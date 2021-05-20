@@ -1,6 +1,7 @@
 import { TournamentIcon } from './TournamentIcon'
 import { TiebreakRule } from './TiebreakRule'
 import { Contestant } from './Contestant'
+import { Round } from './Round'
 
 export type TournamentDetails = 
     {
@@ -15,5 +16,6 @@ export type TournamentDetails =
         includeScore?: boolean,
         double?: boolean,
         icon?: TournamentIcon,
-        tiebreakRules?: TiebreakRule[]
+        tiebreakRules?: TiebreakRule[],
+        rounds?: Round[]
     }

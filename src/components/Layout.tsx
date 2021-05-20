@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Navbar from './Navbar'
 import '../styles/Layout.scss';
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,8 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { actionCreators, State } from '@/state/state';
 import { bindActionCreators } from 'redux';
 import { TournamentIcon } from '@/types/TournamentIcon';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { axios } from '../axios/axios';
 
 type Props = {
     children: React.ReactNode
@@ -31,12 +33,22 @@ const Layout: React.FC<Props> = ({children}) => {
 
     const dispatch = useDispatch();
 
-    const { addTournamentIcons } = bindActionCreators(actionCreators, dispatch)
+    const { addTournamentIcons, loadTournaments } = bindActionCreators(actionCreators, dispatch)
 
     const state = useSelector((state: State) => state)
 
+    const fetchTournamentsData = useCallback(async() => {
+        const tournamentsResponse: any = await axios.get('/tournaments').catch(err => console.log(err));
+        loadTournaments(tournamentsResponse.data)
+    }, [])
+
 
     useEffect(() => {
+
+        if(!state?.tournamentsData) {
+            fetchTournamentsData()
+        }
+
         if(state?.tournamentIcons) {
             const tournamentIconsData: TournamentIcon[] = data.allFile.edges.map(({node}, index) => 
                 (
@@ -56,6 +68,9 @@ const Layout: React.FC<Props> = ({children}) => {
     return (
         <div className='layout'>
             <Provider store={store}>
+                <div className='fetching-spinner'>
+                    <ClipLoader color='#be0546' loading={state.isFetchingData} size={40} />
+                </div>
                 <Navbar />
                 <div className='content'>
                     {children}
