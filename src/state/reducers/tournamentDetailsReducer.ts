@@ -14,7 +14,7 @@ const reducer = (state: TournamentDetails = tournamentDetailsInit, action: Actio
         case Actions.UPDATE_NAME:
             return {...state, name: action.payload}
         case Actions.UPDATE_ICON:
-            return {...state, icon: action.payload}
+            return {...state, iconId: action.payload}
         case Actions.UPDATE_POINTS_WIN:
             return {...state, pointsPerWin: action.payload}
         case Actions.UPDATE_POINTS_DRAW:

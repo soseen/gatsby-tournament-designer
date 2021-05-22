@@ -15,7 +15,7 @@ import { axios } from '../../axios/axios';
 const newRoundRobin: React.FC = () => {
 
     const dispatch = useDispatch();
-    const { updateName, setIsFetchingData } = bindActionCreators(actionCreators, dispatch)
+    const { updateName, setIsFetchingData, loadTournaments } = bindActionCreators(actionCreators, dispatch)
     const state = useSelector((state: State) => state.tournamentDetails)
 
     const [validationMessage, setValidationMessage] = useState<string | null>(null);
@@ -33,7 +33,7 @@ const newRoundRobin: React.FC = () => {
             setValidationMessage('Please set the name of your tournament')
             return false
         } 
-        else if (!tournamentDetails.icon){
+        else if (!tournamentDetails.iconId){
             setValidationMessage('Choose one of the available icons for your tournament')
             return false
         }
@@ -97,9 +97,8 @@ const newRoundRobin: React.FC = () => {
                     return; 
                 }
 
-                const tournament = await axios.get(`/tournaments/${tournamentId}`).catch(err => console.log(err))
-
-                console.log(tournament);
+                const tournamentsResponse: any = await axios.get('/tournaments').catch(err => console.log(err));
+                loadTournaments(tournamentsResponse.data)
 
             } catch (error) {
                 console.log(error);

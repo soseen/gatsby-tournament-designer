@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import { TournamentIcon } from '@/types/TournamentIcon';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { axios } from '../axios/axios';
+import { TournamentDetails } from '@/types/TournamentDetails';
 
 type Props = {
     children: React.ReactNode
@@ -23,7 +24,7 @@ const Layout: React.FC<Props> = ({children}) => {
                 node {
                     base
                     childImageSharp {
-                        gatsbyImageData(layout: CONSTRAINED, width: 60, quality: 100)
+                        gatsbyImageData(layout: CONSTRAINED, width: 100, quality: 100)
                     }
                 }
             }
@@ -33,17 +34,39 @@ const Layout: React.FC<Props> = ({children}) => {
 
     const dispatch = useDispatch();
 
-    const { addTournamentIcons, loadTournaments } = bindActionCreators(actionCreators, dispatch)
+    const { addTournamentIcons, loadTournaments, setIsFetchingData } = bindActionCreators(actionCreators, dispatch)
 
     const state = useSelector((state: State) => state)
 
     const fetchTournamentsData = useCallback(async() => {
+        setIsFetchingData(true);
         const tournamentsResponse: any = await axios.get('/tournaments').catch(err => console.log(err));
-        loadTournaments(tournamentsResponse.data)
-    }, [])
+
+        if(tournamentsResponse?.data){
+            let tournamentsData: TournamentDetails[] = tournamentsResponse.data
+
+            const tournamentIconsData: TournamentIcon[] = data.allFile.edges.map(({node}, index) => 
+                    (
+                        {
+                            img: node.childImageSharp.gatsbyImageData, 
+                            id: index + 1,
+                            name: node.base
+                        }
+                    )
+                )
+            
+            console.log(tournamentsData);
+            
+            tournamentsData = tournamentsData.map((tournament) => ({...tournament, icon: tournamentIconsData?.find(icon => icon.id === tournament.iconId)}))
+    
+            loadTournaments(tournamentsData)
+        }
+        setIsFetchingData(false);
+    }, [state.tournamentsData])
 
 
     useEffect(() => {
+        
 
         if(!state?.tournamentsData) {
             fetchTournamentsData()
@@ -59,7 +82,7 @@ const Layout: React.FC<Props> = ({children}) => {
                     }
                 )
             )
-
+            
             addTournamentIcons(tournamentIconsData);
         }
 
@@ -76,7 +99,6 @@ const Layout: React.FC<Props> = ({children}) => {
                     {children}
                 </div>
             </Provider>
-
         </div>
     )
 }

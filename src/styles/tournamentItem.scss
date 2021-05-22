@@ -1,0 +1,124 @@
+@import './Variables.scss';
+@import './Mixins.scss';
+
+.tournament-item {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    // border-left: 2px solid $accent-4;
+    color: $text;
+    border-radius: 2px;
+    background-color: $main-2;
+    padding: 8px;
+    position: relative;
+    z-index: 10;
+    @include box-shadow;
+
+    &:hover {
+        background-color: $main-2;
+    }
+
+    
+    &::before {
+        content: '';
+        width: 40%;
+        // left: 50%;
+        // top: 0;
+        // transform: translateX(-50%);
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        height: 2px;
+        background-color: $accent-4;
+        z-index: 1;
+        border-radius: 5px;
+    }
+
+    .tournament-item-header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        color: $text;
+
+        h3 {
+            @include h3;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        button {
+            @include basic-btn;
+            background-color: $accent-4;
+            padding: 10px 25px;
+            color: $text;
+            font-weight: bolder;
+            @include box-shadow;
+            border-radius: 2px;
+            font-size: 0.8rem;
+
+            &:hover {
+                background-color: $accent-3;
+            }
+        }
+    }
+
+    .tournament-icon {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin-right: 10px;
+        position: relative;
+    }
+
+    .tournament-name {
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        p {
+            margin: 0;
+            color: #48495c;
+            font-weight: 600;
+        }
+    }
+
+    .tournament-item-description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        height: 100%;
+
+        p {
+            margin: 0
+        }
+    }
+}
+
+
+@media (max-width: 1000px) {
+    .tournament-item {
+
+    }
+}
+
+@media (max-width: 700px) {
+    .tournament-item {
+        
+        .tournament-icon {
+            height: 35px;
+            width: 35px;
+        }
+    }
+}

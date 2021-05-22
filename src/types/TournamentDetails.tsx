@@ -4,7 +4,8 @@ import { Contestant } from './Contestant'
 import { Round } from './Round'
 
 export type TournamentDetails = 
-    {
+    {   
+        id?: number,
         name: string,
         format?: string,
         participants: Contestant[],
@@ -15,7 +16,10 @@ export type TournamentDetails =
         allowDraws?: boolean,
         includeScore?: boolean,
         double?: boolean,
+        iconId?: number,
         icon?: TournamentIcon,
         tiebreakRules?: TiebreakRule[],
-        rounds?: Round[]
-    }
+        rounds?: Round[],
+        createdAt?: string,
+        updatedAt?: string
+}

@@ -16,5 +16,6 @@ export const tournamentDetailsInit: TournamentDetails = {
     includeScore: true,
     double: false,
     icon: null,
+    iconId: null,
     tiebreakRules: tiebreakRulesDefault
 }

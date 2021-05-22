@@ -15,7 +15,7 @@ import { axios } from '../../axios/axios';
 const newSwiss: React.FC = () => {
 
     const dispatch = useDispatch();
-    const { updateName, setIsFetchingData, selectFormat } = bindActionCreators(actionCreators, dispatch)
+    const { updateName, setIsFetchingData, selectFormat, loadTournaments } = bindActionCreators(actionCreators, dispatch)
     const state = useSelector((state: State) => state.tournamentDetails)
 
     const [validationMessage, setValidationMessage] = useState<string | null>(null);
@@ -40,8 +40,12 @@ const newSwiss: React.FC = () => {
             setValidationMessage('Please set the name of your tournament')
             return false
         } 
-        else if (!tournamentDetails.icon){
+        else if (!tournamentDetails.iconId){
             setValidationMessage('Choose one of the available icons for your tournament')
+            return false
+        }
+        else if(!roundsCount) {
+            setValidationMessage('Please insert the amount of rounds')
             return false
         }
         else if(tournamentDetails?.participants[0].name === '' || tournamentDetails?.participants[1].name === ''){
@@ -96,16 +100,14 @@ const newSwiss: React.FC = () => {
                 })
 
                 try {
-                    const promiseResponse = await Promise.all(promises); 
-                    console.log(promiseResponse);
+                    await Promise.all(promises); 
                 } catch (error) {
                     console.log(error);
                     return; 
                 }
 
-                const tournament = await axios.get(`/tournaments/${tournamentId}`).catch(err => console.log(err))
-
-                console.log(tournament);
+                const tournamentsResponse: any = await axios.get('/tournaments').catch(err => console.log(err));
+                loadTournaments(tournamentsResponse.data)
 
             } catch (error) {
                 console.log(error);

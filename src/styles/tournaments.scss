@@ -1,7 +1,49 @@
+@import './Mixins';
+@import './Variables';
+
 .tournaments-wrapper {
     width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    margin: auto;
     padding: 50px;
-    height: 400px;
-    background-color: #325342;
-    z-index: 500;
+    margin-top: 50px;
+
+    .tournaments-main {
+        width: 100%;
+        @include main-app;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .tournaments-header{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        h1 {
+            @include h1;
+        }
+    }
+
+    .tournaments-list-wrapper {
+        width: 100%;
+    }
+
+    
+}
+
+@media (max-width: 1000px) {
+    .tournaments-wrapper {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .tournaments-wrapper {
+        padding: 10px;
+    }
 }
