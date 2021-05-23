@@ -16,4 +16,60 @@
         justify-content: flex-start;
         align-items: flex-start;
     }
+
+    .tournament-icon {
+        width: 50px;
+        height: auto;
+        overflow: hidden;
+        margin-right: 10px;
+    }
+
+    .tournament-header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 20px;
+        // padding: 5px;
+        // background-color: $main;
+        // border-radius: 2px;
+
+        h1 {
+            @include h1;
+            margin: 0;
+            margin-right: auto;
+        }
+
+        button {
+            @include basic-btn;
+            background-color: $accent-4;
+            padding: 10px 25px;
+            color: $text;
+            font-weight: bolder;
+            box-shadow: 2px 2px 8px 1px #00000040;
+            border-radius: 2px;
+            font-size: 0.8rem;
+
+            &:hover {
+                background-color: $accent-3;
+            }
+        }
+    }
+}
+
+@media(max-width: 1000px) {
+    .tournament-wrapper{
+        padding: 20px;
+        
+    }
+}
+
+@media(max-width: 700px){
+    .tournament-wrapper{
+        padding: 10px;
+
+        .tournament-icon{
+            width: 40px;
+        }
+    }
 }

@@ -1,0 +1,130 @@
+@import './Variables.scss';
+@import './Mixins.scss';
+
+.round-robin-tournament-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .round-robin-tournament-main {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .round-robin-tournament-table-wrapper {
+        width: 100%;
+        flex-basis: 48%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        h4 {
+            @include h4;
+        }
+    }
+
+    .round-robin-tournament-table {
+        border-radius: 1px;
+        border: 1px solid $accent-1;
+        border-spacing: 0 1px;
+        font-size: 0.9rem;
+
+        thead {
+            background-color: $secondary;
+        }
+
+        td,th {
+            padding: 0.5rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .name {
+            text-align: left;
+        }
+
+        tbody{
+            border-spacing: 1px;
+            cursor: pointer;
+
+            tr {
+                border-spacing: 1px;
+                border-bottom: 1px solid $accent-4;
+                box-sizing: border-box;
+                background-color: $main;
+
+                &:hover {
+                    background-color: $main-2;
+                }
+
+                &:nth-child(1){
+                    background-color: $accent-4;
+                }
+            }
+
+        }
+    }
+
+    .round-robin-tournament-rounds-wrapper {
+        width: 100%;
+        flex-basis: 48%;
+
+        h4 {
+            @include h4;
+        }
+    }
+
+    .round-robin-tournament-rounds {
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid $accent-1;
+        height: 100%;
+        background-color: $secondary;
+        color: $text;
+    }
+
+    .round-robin-tournament-draw-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
+        
+        p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        button {
+            @include basic-btn;
+            background-color: $accent-4;
+            padding: 10px 25px;
+            color: $text;
+            font-weight: bolder;
+            @include box-shadow;
+            border-radius: 2px;
+            font-size: 0.8rem;
+
+            &:hover {
+                background-color: $accent-3;
+            }
+        }
+    }
+    
+}
+
+@media (max-width: 800px) {
+    .round-robin-tournament-wrapper {
+        .round-robin-tournament-table-wrapper,
+        .round-robin-tournament-rounds-wrapper {
+            flex-basis: 100%;
+        }
+    }
+} 
