@@ -14,5 +14,6 @@ export enum Actions {
     UPDATE_TIEBREAK_RULES = "updateTournamentTiebreakRules",
     RESET_TIEBREAK_RULES = "resetTournamentTiebreakRules",
     ADD_T_ICONS = "addTournamentIcons",
-    LOAD_TOURNAMENTS = "loadTournaments"
+    LOAD_TOURNAMENTS = "loadTournaments",
+    UPDATE_TOURNAMENTS = "updateTournaments"
 }

@@ -16,6 +16,8 @@ export type TournamentDetails =
         allowDraws?: boolean,
         includeScore?: boolean,
         double?: boolean,
+        isStarted?: boolean
+        isFinished?: boolean
         iconId?: number,
         icon?: TournamentIcon,
         tiebreakRules?: TiebreakRule[],

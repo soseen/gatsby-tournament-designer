@@ -122,3 +122,10 @@ export const loadTournaments = (tournamentsData: TournamentDetails[]) => {
         payload: tournamentsData
     }
 }
+
+export const updateTournaments = (tournamentData: TournamentDetails) => {
+    return {
+        type: Actions.UPDATE_TOURNAMENTS,
+        payload: tournamentData
+    }
+}

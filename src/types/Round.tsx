@@ -1,6 +1,8 @@
 import { Match } from "./Match";
 
 export type Round = {
+    id?: number
     no: number,
-    matches: Match[]
+    isFinished?: boolean,
+    matches?: Match[]
 }

@@ -55,19 +55,16 @@ const Layout: React.FC<Props> = ({children}) => {
                     )
                 )
             
-            console.log(tournamentsData);
-            
-            tournamentsData = tournamentsData.map((tournament) => ({...tournament, icon: tournamentIconsData?.find(icon => icon.id === tournament.iconId)}))
-    
+            tournamentsData = tournamentsData.map((tournament) => ({...tournament, icon: tournamentIconsData?.find(icon => icon.id === tournament.iconId)}))           
+
             loadTournaments(tournamentsData)
         }
         setIsFetchingData(false);
-    }, [state.tournamentsData])
+    }, [])
 
 
     useEffect(() => {
         
-
         if(!state?.tournamentsData) {
             fetchTournamentsData()
         }

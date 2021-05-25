@@ -10,13 +10,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { actionCreators, State } from '@/state/state';
 import { axios } from '../../axios/axios';
+import { TournamentDetails } from '@/types/TournamentDetails';
 
+type TournamentsResponse = {
+    data: TournamentDetails[]
+}
+
+type NewTournamentResponse = {
+    data: TournamentDetails
+}
 
 const newSwiss: React.FC = () => {
 
     const dispatch = useDispatch();
     const { updateName, setIsFetchingData, selectFormat, loadTournaments } = bindActionCreators(actionCreators, dispatch)
-    const state = useSelector((state: State) => state.tournamentDetails)
+    const state = useSelector((state: State) => state.tournamentDetails);
+    const icons = useSelector((state: State) => state.tournamentIcons)
 
     const [validationMessage, setValidationMessage] = useState<string | null>(null);
     const [roundsCount, setRoundsCount] = useState<number>(null);
@@ -81,7 +90,7 @@ const newSwiss: React.FC = () => {
             try {
                 let promises = []
 
-                const newTournament: any = await axios.post(`/tournaments`, state).catch(err => console.log(err))
+                const newTournament = await axios.post(`/tournaments`, state).catch(err => console.log(err)) as NewTournamentResponse;
 
                 let tournamentId = newTournament.data.id;
 
@@ -106,8 +115,13 @@ const newSwiss: React.FC = () => {
                     return; 
                 }
 
-                const tournamentsResponse: any = await axios.get('/tournaments').catch(err => console.log(err));
-                loadTournaments(tournamentsResponse.data)
+                const tournamentsResponse = await axios.get('/tournaments').catch(err => console.log(err)) as TournamentsResponse;
+
+                let newTournaments = tournamentsResponse.data.map((tournament: TournamentDetails) => (
+                    tournament.icon ? tournament : {...tournament, icon: icons.find(i => i.id === tournament.iconId)}
+                ))
+
+                loadTournaments(newTournaments)
 
             } catch (error) {
                 console.log(error);

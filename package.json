@@ -30,6 +30,7 @@
     "@types/reach__router": "^1.3.7",
     "@types/react-redux": "^7.1.16",
     "axios": "^0.21.1",
+    "berger-table-generator": "^1.0.4",
     "date-fns": "^2.21.3",
     "gatsby": "^3.5.0",
     "gatsby-plugin-image": "^1.4.1",

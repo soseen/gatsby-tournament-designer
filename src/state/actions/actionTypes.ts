@@ -88,6 +88,11 @@ type LoadTournaments = {
     payload: TournamentDetails[]
 }
 
+type UpdateTournaments = {
+    type: Actions.UPDATE_TOURNAMENTS,
+    payload: TournamentDetails
+}
+
 export type Action = 
     SetIsFetchingData |
     SetTournament |
@@ -104,4 +109,5 @@ export type Action =
     UpdateTournamentTiebreakRules |
     ResetTournamentTiebreakRules |
     AddTournamentIcons |
-    LoadTournaments;
+    LoadTournaments |
+    UpdateTournaments;
